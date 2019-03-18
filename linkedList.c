@@ -55,8 +55,29 @@ node_t* findValue(node_t* head, int nValue)
 }
 
 
-int deleteNode(node_t* head, int nValue)
+void deleteNode(node_t* head, int nValue)
 {
+    node_t* nodeDir;
+    node_t* current;
+
+    nodeDir = findValue(head,nValue);
+    current = head;
+    if(!nodeDir)
+    {
+        return;
+    }
+    
+    while(current)
+    {
+        if(current->next==nodeDir)
+        {
+            current->next = nodeDir->next;
+            free(nodeDir);
+            return;    
+        }
+
+        current = current->next;
+    }
     
 
 }
@@ -91,12 +112,19 @@ int main()
 
     if(findValue(head_n,85))
     {
-        printf("Found!");
+        printf("Found!\n");
     }
     
-    free(head_n);
+    printf("Deleting node 45\n");
+    deleteNode(head_n,45);
     
-    
+    current=head_n;
+    while(current)
+    {
+        printf("Value : %i \n",current->value);
+        current = current->next;
+    }
+
     
     return 0;
 }
