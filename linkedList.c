@@ -84,7 +84,12 @@ void deleteNode(node_t* head, int nValue)
 
 void deleteList(node_t* head)
 {
-    
+   if(!head)
+   {
+       return;
+   } 
+   deleteList(head->next);
+   free(head);
 }
 
 
@@ -124,6 +129,10 @@ int main()
         printf("Value : %i \n",current->value);
         current = current->next;
     }
+
+    printf("Deleting list\n");
+    deleteList(head_n);
+    
 
     
     return 0;
