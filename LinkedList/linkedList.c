@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "linkedList.h"
 
-typedef struct node
-{
-    int value;
-    struct node *next;
-} node_t;
 
 node_t* createNode(int nValue)
 {
@@ -92,48 +88,14 @@ void deleteList(node_t* head)
    free(head);
 }
 
-
-
-int main()
+void displayList(node_t *head)
 {
-    node_t* head_n = NULL;
-    
-    head_n = createNode(1);
-
-    insertNode(&head_n,4);
-    insertNode(&head_n,6);
-    insertNode(&head_n,74);
-    insertNode(&head_n,58);
-    insertNode(&head_n,45);
-    insertNode(&head_n,85);
-
-    node_t* current = head_n;
+    node_t* current = head;
 
     while(current)
     {
         printf("Value : %i \n",current->value);
         current = current->next;
     }
-
-    if(findValue(head_n,85))
-    {
-        printf("Found!\n");
-    }
-    
-    printf("Deleting node 45\n");
-    deleteNode(head_n,45);
-    
-    current=head_n;
-    while(current)
-    {
-        printf("Value : %i \n",current->value);
-        current = current->next;
-    }
-
-    printf("Deleting list\n");
-    deleteList(head_n);
-    
-
-    
-    return 0;
 }
+
